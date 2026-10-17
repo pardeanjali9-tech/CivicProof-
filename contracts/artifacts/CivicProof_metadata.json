@@ -1,0 +1,262 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "EmptyField",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "OnlyReporterCanUpdate",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ReportNotFound",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "reportId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "reporter",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "category",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "location",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "evidenceHash",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "createdAt",
+						"type": "uint256"
+					}
+				],
+				"name": "ReportSubmitted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "reportId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "enum CivicProof.Status",
+						"name": "status",
+						"type": "uint8"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "updatedBy",
+						"type": "address"
+					}
+				],
+				"name": "StatusUpdated",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "reportCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "reports",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "reporter",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "category",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "location",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "evidenceHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "enum CivicProof.Status",
+						"name": "status",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "createdAt",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "category",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "location",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "description",
+						"type": "string"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "evidenceHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "submitReport",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "reportId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint8",
+						"name": "newStatus",
+						"type": "uint8"
+					}
+				],
+				"name": "updateStatus",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Report text is public on-chain. Never submit personal or sensitive data.",
+			"kind": "dev",
+			"methods": {
+				"updateStatus(uint256,uint8)": {
+					"details": "Production systems should use verified municipal/authority roles."
+				}
+			},
+			"title": "CivicProof",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"submitReport(string,string,string,bytes32)": {
+					"notice": "Create a public report. The evidence image itself is not stored."
+				},
+				"updateStatus(uint256,uint8)": {
+					"notice": "Prototype workflow: only the original reporter can advance status."
+				}
+			},
+			"notice": "Minimal public civic-report register for a hackathon prototype.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"CivicProof.sol": "CivicProof"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"CivicProof.sol": {
+			"keccak256": "0xce20a0fdf9a66eb7fecc5a809abd6920f7445261a1edbf7000d9364b2aec4c2b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://87f068b5cc7911fceba6972b731ad8d92957f182e37d68bb8d5e1225d19d93bc",
+				"dweb:/ipfs/QmQwdJm3Wy9G9FAxrwYs8Vqvf17YKNPyYL4UjDkCAjSiC1"
+			]
+		}
+	},
+	"version": 1
+}

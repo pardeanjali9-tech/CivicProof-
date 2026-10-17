@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09111f">
+  <meta name="description" content="CivicProof makes civic issue reporting and resolution records more transparent.">
+  <title>CivicProof — Civic Accountability</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.5/ethers.umd.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="announcement"><span class="pulse"></span> TRANSPARENCY IN EVERY ACTION <span class="demo-tag">WEB3 HACKATHON PROTOTYPE</span></div>
+  <header class="header">
+    <a class="brand" href="#" aria-label="CivicProof home">
+      <span class="brand-logo">C<span>✓</span></span>
+      <span><strong>CivicProof</strong><small>CIVIC ACCOUNTABILITY</small></span>
+    </a>
+    <nav><a href="#how">How it works</a><a href="#reports">Reports</a><button id="connectBtn" class="wallet-btn">Connect MetaMask</button></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> COMMUNITY-POWERED ACCOUNTABILITY</div>
+        <h1>From complaint<br>to <em>verified repair.</em></h1>
+        <p>Report civic issues, follow their progress, and create a verifiable record of community action with blockchain technology.</p>
+        <div class="hero-actions"><a class="primary-btn" href="#report">Report an issue <span>↗</span></a><a class="quiet-link" href="#how">Explore how it works ↓</a></div>
+        <div class="trust-row"><span>✓</span> Transparent records <b>·</b> Evidence-based updates <b>·</b> Wallet-enabled</div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a civic report progress card">
+        <div class="ring ring-a"></div><div class="ring ring-b"></div>
+        <div class="mock-card">
+          <div class="mock-top"><span class="mock-icon">CP</span><span class="tag-green">● TRACKABLE RECORD</span></div>
+          <small class="muted-label">SAMPLE COMMUNITY REPORT</small>
+          <h3>Streetlight repair</h3><p class="mock-location">⌖ Community-reported location</p>
+          <div class="timeline-row"><span class="check">✓</span><div><b>Issue reported</b><small>Record created</small></div><strong>01</strong></div>
+          <div class="timeline-row"><span class="check">✓</span><div><b>Evidence fingerprint</b><small>Content integrity reference</small></div><strong>02</strong></div>
+          <div class="timeline-row"><span class="pending"></span><div><b>Repair verification</b><small>Awaiting review</small></div><strong>03</strong></div>
+          <div class="mock-foot"><span class="pulse"></span> Every update leaves a trace</div>
+        </div>
+        <div class="float-chip"><span>↗</span><div><b>Accountability</b><small>Designed for transparency</small></div></div>
+      </div>
+    </section>
+
+    <section id="how" class="steps">
+      <article><span>01</span><div><b>Report</b><small>Describe a local civic issue.</small></div></article>
+      <article><span>02</span><div><b>Record</b><small>Store a report on the blockchain.</small></div></article>
+      <article><span>03</span><div><b>Verify</b><small>Track status changes transparently.</small></div></article>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><div><div class="eyebrow"><span></span> GET INVOLVED</div><h2>Make your report count.</h2><p>Submit an issue and keep track of the public record.</p></div><div class="network-chip"><span id="networkDot"></span><div><b id="networkLabel">Wallet not connected</b><small id="networkSub">Connect MetaMask to use blockchain features</small></div></div></div>
+      <div class="workspace">
+        <section id="report" class="panel">
+          <div class="panel-head"><div><small>01 / SUBMIT</small><h3>Report a civic issue</h3></div><span class="panel-symbol">＋</span></div>
+          <div id="setupNotice" class="notice">You can preview the app now. To save reports on-chain, deploy the included Solidity contract and add its address to <code>app.js</code>.</div>
+          <form id="reportForm">
+            <label for="category">Issue category <i>*</i></label>
+            <select id="category" required><option value="">Select a category</option><option>Broken streetlight</option><option>Road damage</option><option>Garbage overflow</option><option>Water leakage</option><option>Blocked drainage</option><option>Other civic issue</option></select>
+            <label for="location">General location <i>*</i></label>
+            <input id="location" maxlength="120" placeholder="e.g. Near the public library" required>
+            <label for="description">Issue description <i>*</i></label>
+            <textarea id="description" maxlength="500" placeholder="Describe the issue clearly. Do not include personal details." required></textarea>
+            <label for="evidence">Evidence image <span class="optional">(optional)</span></label>
+            <input id="evidence" type="file" accept="image/*">
+            <small class="help">The image is hashed locally. The image itself is not uploaded or stored on-chain.</small>
+            <label class="chain-check"><input id="onChainToggle" type="checkbox" checked> Submit on-chain using MetaMask when connected</label>
+            <button class="primary-btn full" id="submitBtn" type="submit">Create report <span>→</span></button>
+            <p id="formMessage" class="message" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section id="reports" class="panel">
+          <div class="panel-head"><div><small>02 / PUBLIC REGISTER</small><h3>Community reports</h3></div><button id="refreshBtn" class="outline-btn">↻ Refresh</button></div>
+          <div class="filters"><span>REPORT HISTORY</span><select id="statusFilter" aria-label="Filter by report status"><option value="All">All statuses</option><option value="Submitted">Submitted</option><option value="Under Review">Under review</option><option value="Resolved">Resolved</option></select></div>
+          <div id="reportsList" class="reports-list"><div class="empty"><div>⌁</div><b>No reports loaded yet</b><p>Connect a wallet and configure the contract, or use local demo mode.</p></div></div>
+          <p class="privacy"><span>i</span> Blockchain records are public and generally permanent. Never submit personal or sensitive information.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="blockchain-strip"><div class="chain-symbol">⌘</div><div class="chain-copy"><small>THE TRUST LAYER</small><h3>Verifiable by design.</h3><p>Report details and evidence fingerprints can be recorded on a smart contract. A deployed contract and confirmed wallet transaction are required for actual on-chain records.</p></div><div class="chain-state"><span id="chainDot"></span><div><b id="chainStatus">Preview mode</b><small id="chainDetail">Contract address not configured</small></div></div></section>
+  </main>
+  <footer><a class="brand footer-brand" href="#"><span class="brand-logo">C<span>✓</span></span><span><strong>CivicProof</strong><small>CIVIC ACCOUNTABILITY</small></span></a><p>Designed for communities. Built for transparency.</p><small>HACKATHON PROTOTYPE · 2026</small></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
